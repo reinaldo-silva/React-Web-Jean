@@ -7,6 +7,7 @@ export const Container = styled.div`
   width: 100vw;
   background: #fff;
   overflow-x: hidden;
+  overflow-y: scroll;
 
   .sec1 {
     height: 50vh; //largura
@@ -35,15 +36,36 @@ export const Container = styled.div`
   }
 
   .sec2 {
-    margin-top: 25vh;
     min-height: 60vh;
     width: 100vw;
-    padding: 0px 15vw;
+    padding: 25vh 20vw;
     position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: flex-start;
+  }
+
+  .footer {
+    height: auto;
+    width: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    border-top: solid 1px rgba(0, 0, 0, 0.1);
+    bottom: 0;
+
+    span {
+      margin-bottom: 10px;
+    }
+  }
+
+  @media (max-width: 1360px) {
+    .sec2 {
+      padding: 40vh 0vw;
+    }
   }
 `;
 
@@ -61,7 +83,7 @@ export const Card = styled.div`
   position: relative;
   width: 325px;
   height: 280px;
-  margin: 50px;
+  margin: 10px 25px;
   background: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.14), 0px 3px 4px rgba(0, 0, 0, 0.12),
     0px 1px 5px rgba(0, 0, 0, 0.2);
@@ -75,6 +97,7 @@ export const Card = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 10px 30px;
+    margin-bottom: 20px;
   }
 
   section {
@@ -115,8 +138,8 @@ export const Close = styled(CgCloseO)`
   width: 50px;
 `;
 
-export const Modal = styled.div`
-  display: flex;
+export const Fundo = styled.div`
+  display: ${(props) => (props.display ? "flex" : "none")};
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -124,11 +147,9 @@ export const Modal = styled.div`
   top: 0;
   z-index: 200;
   background: rgba(0, 0, 0, 0.4);
-
   width: 100vw;
   height: 100%;
   transition: 0.4s;
-  transform: translateX(${(props) => (props.open ? "0%" : "100%")});
 
   .close {
     width: 50px;
@@ -141,6 +162,24 @@ export const Modal = styled.div`
     top: 50px;
   }
 
+  @media (max-width: 1360px) {
+    /* margin-top: 50px; */
+  }
+`;
+
+export const Modal = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  z-index: 300;
+  width: 100vw;
+  height: auto;
+  margin: 80px 0px;
+  transform: translateX(${(props) => (props.open ? "0%" : "100%")});
+  transition: 0.4s;
+
   .header {
     height: 170px;
     background: #2a2c2e;
@@ -149,8 +188,9 @@ export const Modal = styled.div`
     justify-content: space-around;
     align-items: flex-start;
     flex-direction: column;
-    padding: 10px 90px;
-    border-radius: 5px 5px 0px 0px;
+    padding: 20px 90px;
+    border-radius: 4px 4px 0px 0px;
+    margin-bottom: 20px;
 
     img {
       width: 50px;
@@ -169,12 +209,8 @@ export const Modal = styled.div`
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.14), 0px 3px 4px rgba(0, 0, 0, 0.12),
       0px 1px 5px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    padding: 10px 90px;
-
-    div {
-    }
+    padding: 0px 90px;
   }
-
   section {
     width: 100%;
     display: flex;

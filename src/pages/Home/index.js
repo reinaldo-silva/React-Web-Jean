@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/api.js";
+import { toast } from "react-toastify";
 import {
   Container,
   Title,
@@ -11,6 +12,7 @@ import {
   Input,
   Body,
   Close,
+  Fundo,
 } from "./styles.js";
 
 import ImgLogoReact from "../../assets/img/React-logo.svg";
@@ -32,6 +34,14 @@ const Home = () => {
     });
   }, []);
 
+  function limpaData() {
+    setNome("");
+    setCodigoMateria("");
+    setDescricao("");
+    setQtdAulas("");
+    setCargaHoraria("");
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -44,13 +54,14 @@ const Home = () => {
         cargaHoraria,
       });
 
-      alert("Cadastro realizado");
+      toast.success("Matéria cadastrada com sucesso!");
+      limpaData();
       setOpenModal(false);
       api.get("/api/materia").then((res) => {
         setMaterias(res.data);
       });
     } catch (err) {
-      alert(err);
+      toast.error("Erro ao cadastrar a matéria");
     }
   }
 
@@ -81,28 +92,39 @@ const Home = () => {
               <section>
                 <Text>{materia.Descricao}</Text>
                 <Label>Qtd. aulas</Label>
-                <Text>{materia.QtdAulas}</Text>
+                <Text>{materia.QtdAulas} aulas</Text>
                 <Label>Carga Horária</Label>
-                <Text>{materia.CargaHoraria}</Text>
+                <Text>{materia.CargaHoraria} horas</Text>
               </section>
             </Card>
           ))}
+          <Fundo display={openModal}>
+            <button className="close">
+              <Close
+                onClick={() => {
+                  setOpenModal(false);
+                }}
+              />
+            </button>
+          </Fundo>
+        </section>
+        <section className="footer">
+          <Title color={"#000"} bolder={true}>
+            Desenvolvido pelos Deus Supremos do 3° ano
+          </Title>
+          <Text>Eduardo Picolé</Text>
+          <Text>João Guaíra</Text>
+          <Text>Reinaldo OI CASADA?</Text>
+          <Text>Vinicius do Rock</Text>
         </section>
       </Container>
 
       <Modal open={openModal}>
-        <button className="close">
-          <Close
-            onClick={() => {
-              setOpenModal(false);
-            }}
-          />
-        </button>
-        <div className="header">
-          <img src={BookBlue} alt="Livro matéria" />
-          <Title width={"auto"}>Adicionar nova matéria</Title>
-        </div>
         <form onSubmit={handleSubmit}>
+          <div className="header">
+            <img src={BookBlue} alt="Livro matéria" />
+            <Title width={"auto"}>Adicionar nova matéria</Title>
+          </div>
           <Body>
             <section>
               <Input>
