@@ -39,6 +39,7 @@ export const Container = styled.div`
     min-height: 60vh;
     width: 100vw;
     padding: 25vh 20vw;
+    padding-bottom: 30px;
     position: relative;
     display: flex;
     flex-wrap: wrap;
