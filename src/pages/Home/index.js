@@ -68,6 +68,15 @@ const Home = () => {
   return (
     <>
       <Container>
+        <Fundo display={openModal}>
+          <button className="close">
+            <Close
+              onClick={() => {
+                setOpenModal(false);
+              }}
+            />
+          </button>
+        </Fundo>
         <div className="sec1">
           <img src={ImgLogoReact} alt="React logo" />
           <Title>Lista de matérias</Title>
@@ -98,19 +107,10 @@ const Home = () => {
               </section>
             </Card>
           ))}
-          <Fundo display={openModal}>
-            <button className="close">
-              <Close
-                onClick={() => {
-                  setOpenModal(false);
-                }}
-              />
-            </button>
-          </Fundo>
         </section>
         <section className="footer">
           <Title color={"#000"} bolder={true}>
-            Desenvolvido pelos Deus Supremos do 3° ano
+            Desenvolvido pelos Deuses Supremos do 3° ano
           </Title>
           <Text>Eduardo Picolé</Text>
           <Text>João Guaíra</Text>

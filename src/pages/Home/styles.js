@@ -36,7 +36,7 @@ export const Container = styled.div`
   }
 
   .sec2 {
-    min-height: 60vh;
+    min-height: 75vh;
     width: 100vw;
     padding: 25vh 20vw;
     padding-bottom: 30px;
